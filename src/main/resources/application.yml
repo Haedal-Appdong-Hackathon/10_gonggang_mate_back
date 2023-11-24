@@ -4,12 +4,12 @@ spring:
     #    url: jdbc:mysql://localhost:3306/beside?serverTimezone=UTC&characterEncoding=UTF-8
     #    username: root
     #    password: vcxz4941@
-    url: jdbc:mysql://database
-    username: admin
-    password: beside12
+    url: jdbc:mysql://localhost:3306/gg?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: gg
+    password: gg
   jpa:
     hibernate:
-      ddl-auto: validate  # option type: create, create-drop, update, validate, none
+      ddl-auto: create  # option type: create, create-drop, update, validate, none
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect  # 쿼리의 기준이 되는 데이터베이스 엔진을 설정합니다.
