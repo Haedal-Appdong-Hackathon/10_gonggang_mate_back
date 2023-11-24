@@ -37,12 +37,21 @@ public class UserController {
         log.info(session.getAttribute("userId").toString());
     }
 
-    @GetMapping("/profile")
+    @GetMapping("/profile") // 프로필 조회
     public ProfileDto getProfile(
             @SessionAttribute(name = "userId", required = false) Long userId
     ) {
         User user = userService.findUser(userId);
         ProfileDto profileDto = ProfileDto.toProfileDto(user);
         return profileDto;
+    }
+
+    @PostMapping("profile") // 프로필 수정
+    public void editProfile(
+            @SessionAttribute(name = "userId", required = false) Long userId,
+            @RequestBody ProfileForm form
+    ) {
+        User user = userService.findUser(userId);
+        userService.editUser(user, form);
     }
 }

@@ -35,4 +35,14 @@ public class UserService {
         return user;
     }
 
+    public void editUser(User user, ProfileForm form) {
+        user.setAvatar(form.getAvatar());
+        user.setNickname(form.getNickname());
+        user.setSchoolNum(form.getSchoolNum());
+        user.setInteresting(form.getInteresting());
+        user.setMbti(form.getMbti());
+        user.setMajor(form.getMajor());
+        user.setIntroduce(form.getIntroduce());
+        userRepository.save(user);
+    }
 }

@@ -1,11 +1,13 @@
 package gonggang.server.common.entity;
 
 import gonggang.server.user.JoinForm;
+import gonggang.server.user.ProfileForm;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @Table(name = "users")
 @NoArgsConstructor
