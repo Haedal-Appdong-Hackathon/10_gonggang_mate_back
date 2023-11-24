@@ -1,5 +1,6 @@
 package gonggang.server.common.entity;
 
+import gonggang.server.user.JoinForm;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,4 +25,17 @@ public class User {
     private String introduce;
     private String wantToDo;
 
+    public static User toEntity(JoinForm form) {
+        return User.builder()
+                .avatar(form.getAvatar())
+                .account(form.getAccount())
+                .password(form.getPassword())
+                .schoolNum(form.getSchoolNum())
+                .interesting(form.getInteresting())
+                .mbti(form.getMbti())
+                .nickname(form.getNickname())
+                .major(form.getMajor())
+                .introduce(form.getInteresting())
+                .build();
+    }
 }
