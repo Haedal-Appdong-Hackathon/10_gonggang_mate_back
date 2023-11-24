@@ -1,5 +1,6 @@
 package gonggang.server.common.entity;
 
+import gonggang.server.post.PostForm;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,8 +18,16 @@ public class Post {
     private Long id;
     private String title;
     private String content;
-    private LocalDate date;
+    private LocalDateTime date;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+    public static Post toEntity(PostForm form){
+        return Post.builder()
+                .content(form.getContent())
+                .date(form.getDate())
+                .title(form.getTitle())
+                .build();
+
+    }
 }
