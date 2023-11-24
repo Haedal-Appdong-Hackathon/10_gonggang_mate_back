@@ -5,6 +5,8 @@ import gonggang.server.user.ProfileForm;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -26,6 +28,9 @@ public class User {
     private String major;
     private String introduce;
     private String wantToDo;
+
+    @OneToMany(mappedBy = "user")
+    private List<Gonggang> gonggangs;
 
     public static User toEntity(JoinForm form) {
         return User.builder()
