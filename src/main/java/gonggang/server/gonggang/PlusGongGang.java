@@ -1,5 +1,4 @@
 package gonggang.server.gonggang;
 
-public class GonggangService {
-
+public class PlusGongGang {
 }
