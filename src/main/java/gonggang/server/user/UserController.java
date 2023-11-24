@@ -6,10 +6,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,14 +15,14 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/users")
+    @PostMapping("/users") // 회원 가입
     public void join(
             @RequestBody JoinForm form
     ) {
         userService.join(form);
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login") // 로그인
     public void login(
             @RequestBody LoginForm form,
             HttpServletRequest request) {
@@ -38,5 +35,14 @@ public class UserController {
         //세션에 로그인 회원 정보 보관
         session.setAttribute("userId", user.getId());
         log.info(session.getAttribute("userId").toString());
+    }
+
+    @GetMapping("/profile")
+    public ProfileDto getProfile(
+            @SessionAttribute(name = "userId", required = false) Long userId
+    ) {
+        User user = userService.findUser(userId);
+        ProfileDto profileDto = ProfileDto.toProfileDto(user);
+        return profileDto;
     }
 }
